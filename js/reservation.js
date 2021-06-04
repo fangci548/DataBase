@@ -112,7 +112,7 @@
     function updatePerson() {
       var id = uid;
       //再根据id把表单中的value值存入对于的p[]i数组中
-      alert("id = " + uid);
+      //alert("id = " + uid);
       for (var i = 0; i < p.length; i++) {
         var a = p[i];
         if (a.id == uid) {
