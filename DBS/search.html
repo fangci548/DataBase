@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DBS Project</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="js/reservation.js"></script>
+
+</head>
+<style>
+    button {
+        background-color: #E0E0E0;
+        /* Green */
+        border: none;
+        color: #7B7B7B;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    input[type=text],
+    select {
+        width: 30%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light">Start Reservation</div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="home.html">新增預約</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="search.html">查詢預約</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="member.html">會員管理</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="employee.html">員工管理</a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+                    <a id="login" href="login.html" class="btn btn-primary">Log In</a>
+                </div>
+            </nav>
+            <div style="margin-left: 20px; margin-top: 20px; margin-right: 20px;">
+                <h3>查詢預約</h3>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="輸入名字">
+                <table class="table table-striped" id="myTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">姓名</th>
+                            <th scope="col">電話</th>
+                            <th scope="col">預約時間</th>
+                            <th scope="col">預約項目</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>小明</td>
+                            <td>0971012021</td>
+                            <td>10/10/2021, 9:30pm</td>
+                            <td>霧眉</td>
+                        </tr>
+                        <tr>
+                            <td>靜香</td>
+                            <td>0955222446</td>
+                            <td>22/10/2021, 4:00pm</td>
+                            <td>美妝</td>
+                        </tr>
+                        <tr>
+                            <td>大雄</td>
+                            <td>0957756984</td>
+                            <td>28/10/2021, 3:00pm</td>
+                            <td>免費諮詢</td>
+                        </tr>
+                        <tr>
+                            <td>文軒</td>
+                            <td>0952154365</td>
+                            <td>16/11/2021, 5:00pm</td>
+                            <td>無創洗眉</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 表格信息 -->
+            <div id="div1" style="margin: 1.25rem;">
+                <table class="table table-hover" style="border: 1px; display: none;" id="table1" cellspacing="2"
+                    cellpadding="2">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

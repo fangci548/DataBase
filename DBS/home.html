@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>DBS Project</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+  <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="js/reservation.js"></script>
+
+</head>
+<style>
+  button {
+    background-color: #E0E0E0;
+    /* Green */
+    border: none;
+    color: #7B7B7B;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  #login:hover {
+    text-decoration:none;
+  }
+</style>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+      <div class="sidebar-heading border-bottom bg-light">Start Reservation</div>
+      <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="home.html">新增預約</a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="search.html">查詢預約</a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="member.html">會員管理</a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="employee.html">員工管理</a>
+      </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+      <!-- Top navigation-->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+          <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <a id="login" href="login.html" class="btn btn-primary">Log In</a>
+        </div>
+      </nav>
+      <div id="" style="margin: 1.25rem;">
+        <button type="button" class="btn btn-info" onclick="showPerson()"><span
+            class="glyphicon glyphicon-qrcode"></span>
+          顯示預約資訊</button>
+        <button type="button" class="btn btn-info" onclick="showAddPerson()"><span
+            class="glyphicon glyphicon-sound-stereo"></span> 新增預約</button>
+      </div>
+
+      <!-- 表格信息 -->
+      <div id="div1" style="margin: 1.25rem;">
+        <table  class="table table-hover" style="border: 1px; display: none;" id="table1" cellspacing="2" cellpadding="2">
+        </table>
+      </div>
+      <!-- 新增人员信息 -->
+      <div id="div2" style="display: none;margin: 1.25rem;">
+        <fieldset id="field2">
+          <legend>新增預約</legend>
+          <table class="table table-hover">
+            <input type="hidden" class="form-control" name="id" id="id">
+            <tr>
+              <td>預約項目：</td>
+              <td>
+                <select id="service-item" class="form-control" required="required">
+                  <option value="" selected="selected">--請選擇--</option>
+                  <option value="霧眉">霧眉</option>
+                  <option value="美妝">美妝</option>
+                  <option value="免費諮詢">免費諮詢</option>
+                  <option value="無創洗眉">無創洗眉</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>預約時間:</td>
+              <td><input id="service-time" type="datetime-local" name="service-time" placeholder="請輸入時間"
+                  required="required"><br></td>
+            </tr>
+            <tr>
+              <td>姓名:</td>
+              <td><input type="text" class="form-control" name="name" id="name" value="" /></td>
+            </tr>
+            <tr>
+              <td>手機:</td>
+              <td><input type="number" class="form-control" name="mobile" id="mobile" value="" /></td>
+            </tr>
+            <tr>
+              <td>生日:</td>
+              <td><input id="birth" type="date" name="time" placeholder="請輸入時間"><br></td>
+            </tr>
+            <tr>
+              <td>性别：</td>
+              <td>
+                <select id="sex" class="form-control" required="required">
+                  <option value="" selected="selected">--請選擇--</option>
+                  <option value="男">男</option>
+                  <option value="女">女</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>地址：</td>
+              <td><input type="text" class="form-control" name="area" id="area" value="" /></td>
+            </tr>
+            <tr>
+              <td>
+                <button type="button" class="btn btn-primary" onclick="addPerson()" >確定</button>
+                <button type="button" class="btn btn-warning" onclick="cancel()" style="margin: 10px;">取消</button>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+
+      <!-- 更新人员信息 -->
+      <div id="div3" style="display: none;margin: 1.25rem;" name="div3">
+        <fieldset id="field3">
+          <legend>更新人員</legend>
+
+          <table class="table table-hover">
+            <tr>
+              <td>預約項目：</td>
+              <td>
+                <select id="uservice-item" class="form-control" required="required">
+                  <option value="" selected="selected">--請選擇--</option>
+                  <option value="霧眉">霧眉</option>
+                  <option value="美妝">美妝</option>
+                  <option value="免費諮詢">免費諮詢</option>
+                  <option value="無創洗眉">無創洗眉</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>預約時間:</td>
+              <td><input id="uservice-time" type="datetime-local" name="service-time" placeholder="請輸入時間"
+                  required="required"><br>
+              </td>
+            </tr>
+            <tr>
+              <td>姓名：</td>
+              <td><input type="text" class="form-control" name="name" id="uname" /></td>
+            </tr>
+            <tr>
+              <td>手機:</td>
+              <td><input type="number" class="form-control" name="mobile" id="umobile" /></td>
+            </tr>
+            <tr>
+              <td>生日:</td>
+              <td><input id="ubirth" type="date" name="time" placeholder="請輸入時間"><br></td>
+            </tr>
+            <tr>
+              <td>性别：</td>
+              <td>
+                <select id="usex" class="form-control" required="required">
+                  <option value="">--請選擇--</option>
+                  <option value="男">男</option>
+                  <option value="女">女</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>地址：</td>
+              <td><input type="text" class="form-control" name="area" id="uarea" /></td>
+            </tr>
+            <tr>
+              <td>
+                <button type="button" class="btn btn-success" onclick="updatePerson()">確定</button>
+                <button type="button" class="btn btn-warning" onclick="cancel()" style="margin: 10px;">取消</button>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>

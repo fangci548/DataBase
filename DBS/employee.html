@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DBS Project</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="js/reservation.js"></script>
+
+</head>
+<script type="text/javascript">
+    var index = 0;
+    index++;
+    var p = new Array();//var p = [];
+    p.push(p1);
+    p.push(p2);
+    /**显示人员信息**/
+    function showPerson() {
+        //显示表格
+        var table1 = document.getElementById("table1");
+        table1.style = "margin: 1.25rem;";
+        var str = "<tr> <th>員工編號</th><th>姓名</th><th>手機</th><th>薪水</th><th>性别</th><th>年齡</th><th>地址</th><th>操作</th> </tr>";
+        for (var i = 0; i < p.length; i++) {
+            var a = p[i];
+            str += "<tr> <td>" + a.id + "</td><td>" + a.name + "</td><th>" + a.mobile + "</th><th>" + a.salary + "</th><td>" + a.sex + "</td><td>" + a.old + "</td><td>" + a.area + "</td><td><button type='button' class='btn btn-success' onclick='showUpdatePerson(" + a.id + ")'>更新</button> &nbsp;&nbsp;   <button type='button' class='btn btn-danger' onclick='deletePerson(" + a.id + ")'>刪除</button>  </td> </tr>";
+        }
+        table1.innerHTML = str;
+    }
+    /**显示新增人员信息**/
+    function showAddPerson() {
+        //隐藏更新人员界面
+        var div3 = document.getElementById("div3");
+        div3.style = "display: none;";
+        var div2 = document.getElementById("div2");
+        div2.style = "margin: 2.25rem;";
+    }
+    /**新增人员信息**/
+    function addPerson() {
+        var field2 = document.getElementById("field2");
+        var a = {};//var a = new Array();
+        // var a = p[index-1];
+        a.id = index;
+        a.name = document.getElementById("name").value;
+        a.mobile = document.getElementById("mobile").value;
+        a.salary = document.getElementById("salary").value;
+        a.old = document.getElementById("old").value;
+        a.sex = document.getElementById("sex").value;
+        a.area = document.getElementById("area").value;
+        // alert(a.id+" "+a.name+" "+a.old+" "+a.sex+" "+a.area +" ");
+        index++;
+        //数组添加表单的值
+        p.push(a);
+        //添加之后重新查询表单
+        showPerson();
+
+    }
+    /**取消按钮，隐藏表单**/
+    function cancel() {
+        //隐藏新增人员信息界面
+        var div2 = document.getElementById("div2");
+        div2.style = "display: none;";
+        //隐藏更新人员信息界面
+        var div3 = document.getElementById("div3");
+        div3.style = "display: none;";
+    }
+    /**根据id删除人员信息**/
+    function deletePerson(id) {
+        var flag = confirm("確定刪除？");
+        if (flag) {
+            for (var i = 0; i < p.length; i++) {
+                var a = p[i];
+                if (a.id == id) {
+                    p.splice(i, 1);//从第i个位置开始删除一个元素
+                }
+            }
+        }
+        //删除完毕重新加载表单
+        showPerson();
+    }
+    /**根据id修改人员信息**/
+    function showUpdatePerson(id) {
+        //隐藏添加人员界面
+        var div2 = document.getElementById("div2");
+        div2.style = "display: none;";
+        //显示更新人员界面
+        var div3 = document.getElementById("div3");
+        div3.style = "margin: 2.25rem";
+        //根据id遍历数组得到要修改的值,然后用document对象进行修改
+        for (var i = 0; i < p.length; i++) {
+            var a = p[i];
+            if (a.id == id) {
+                document.getElementById("uname").value = a.name;
+                document.getElementById("umobile").value = a.mobile;
+                document.getElementById("usalary").value = a.mobile;
+                document.getElementById("uold").value = a.old;
+                document.getElementById("usex").value = a.sex;
+                document.getElementById("uarea").value = a.area;
+                document.getElementById("uid").value = a.id;
+            }
+        }
+    }
+    function updatePerson() {
+        var id = document.getElementById("uid").value;
+        //再根据id把表单中的value值存入对于的p[]i数组中
+        for (var i = 0; i < p.length; i++) {
+            var a = p[i];
+            if (a.id == id) {
+                p[i].name = document.getElementById("uname").value;
+                p[i].name = document.getElementById("umobile").value;
+                p[i].name = document.getElementById("usalary").value;
+                p[i].old = document.getElementById("uold").value;
+                p[i].sex = document.getElementById("usex").value;
+                p[i].area = document.getElementById("uarea").value;
+            }
+        }
+        //重新调用表单刷新
+        showPerson();
+        //隐藏添加人员界面
+        var div3 = document.getElementById("div3");
+        div3.style = "display: none;";
+    }
+</script>
+<style>
+    button {
+        background-color: #E0E0E0;
+        /* Green */
+        border: none;
+        color: #7B7B7B;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light">Start Reservation</div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="home.html">新增預約</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="search.html">查詢預約</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="member.html">會員管理</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="employee.html">員工管理</a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation"><span
+                            class="navbar-toggler-icon"></span></button>
+
+                </div>
+            </nav>
+            <div id="" style="margin: 1.25rem;">
+                <button type="button" class="btn btn-info" onclick="showPerson()"><span
+                        class="glyphicon glyphicon-qrcode"></span> 顯示員工資訊</button>
+                <button type="button" class="btn btn-info" onclick="showAddPerson()"><span
+                        class="glyphicon glyphicon-sound-stereo"></span> 新增員工</button>
+            </div>
+
+            <!-- 表格信息 -->
+            <div id="div1" style="margin: 1.25rem;">
+                <table  class="table table-hover" style="border: 1px; display: none;" id="table1" cellspacing="2" cellpadding="2"></table>
+            </div>
+            <!-- 新增人员信息 -->
+            <div id="div2" style="display: none;margin: 1.25rem;">
+                <fieldset id="field2">
+                    <legend>新增員工</legend>
+                    <table class="table table-hover">
+                        <input type="hidden" class="form-control" name="id" id="uid" />
+                        <tr>
+                            <td>姓名:</td>
+                            <td><input type="text" class="form-control" name="name" id="name" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td>手機:</td>
+                            <td><input type="number" class="form-control" name="mobile" id="mobile" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td>薪水:</td>
+                            <td><input type="number" class="form-control" name="salary" id="salary" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td>年齡：</td>
+                            <td><input type="number" class="form-control" name="old" id="old" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td>性别：</td>
+                            <td>
+                                <select id="sex" class="form-control" required="required">
+                                    <option value="">--請選擇--</option>
+                                    <option value="男" selected="selected">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>地址：</td>
+                            <td><input type="text" class="form-control" name="area" id="area" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="addPerson()">確定</button>
+                                <button type="button" class="btn btn-warning" onclick="cancel()" style="margin-left: 10px;">取消</button>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+            <!-- 更新人员信息 -->
+            <div id="div3" style="display: none;margin: 1.25rem;" name="div3">
+                <fieldset id="field3">
+                    <legend>更新人員</legend>
+                    <table class="table table-hover">
+                        <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" class="form-control" name="name" id="uname" /></td>
+                        </tr>
+                        <tr>
+                            <td>手機:</td>
+                            <td><input type="number" class="form-control" name="mobile" id="umobile" /></td>
+                        </tr>
+                        <tr>
+                            <td>薪水:</td>
+                            <td><input type="number" class="form-control" name="salary" id="usalary" /></td>
+                        </tr>
+                        <tr>
+                            <td>年齡：</td>
+                            <td><input type="number" class="form-control" name="old" id="uold" /></td>
+                        </tr>
+                        <tr>
+                            <td>性别：</td>
+                            <td>
+                                <select id="usex" class="form-control" required="required">
+                                    <option value="">--請選擇--</option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>地址：</td>
+                            <td><input type="text" class="form-control" name="area" id="uarea" /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-success" onclick="updatePerson()">確定</button>
+                                <button type="button" class="btn btn-warning" onclick="cancel()" style="margin-left: 10px;">取消</button>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

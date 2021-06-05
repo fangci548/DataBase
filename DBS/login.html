@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/navigation.css">
+</head>
+
+<script>
+    function isnull(){
+        var user = document.getElementById("user");
+        var psw = document.getElementById("psw");
+
+        if(user.value == '' || user.value == null || psw.value == '' || psw.value == null){
+            alert("帳號 密碼 不得為空");
+        }
+    }
+</script>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar-->
+        <div class="border-end bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading border-bottom bg-light">Start Reservation</div>
+            <div class="list-group list-group-flush">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="home.html">新增預約</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="search.html">查詢預約</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="member.html">會員管理</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="employee.html">員工管理</a>
+            </div>
+        </div>
+        <!-- Page content wrapper-->
+        <div id="page-content-wrapper">
+            <!-- Top navigation-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+                </div>
+            </nav>
+            <br><br>
+            <div
+                style="padding: 10px; margin:auto; width: 400px;background-color: rgb(202, 202, 202); border-radius: 4%;">
+                <h3 style="margin: 30px auto; width: 300px;">管理者登入</h3>
+                <form style="margin: 30px auto; width: 300px;">
+                    <div class=" form-group">
+                        <label for="user">帳號</label>
+                        <input type="text" class="form-control" id="user" placeholder="請輸入帳號">
+                    </div>
+                    <div class="form-group">
+                        <label for="psw">密碼</label>
+                        <input type="password" class="form-control" id="psw" placeholder="請輸入密碼">
+                    </div>
+                    <a href="#" class="btn btn-info" style="border: none;" onclick="isnull()">登入</a>
+                    
+                    <!-- 管理使用者 -->
+                    <!--<a href="#" class="btn btn-info" style="border: none;">管理使用者</a>-->
+                </form>
+            </div>
+            <br><br><br><br>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
