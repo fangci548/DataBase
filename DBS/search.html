@@ -46,7 +46,8 @@
 <script>
     function myFunction() {
         // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
+        var input, filter, table, tr, td, i, td1, td2, td3;
+
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
@@ -54,16 +55,20 @@
 
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[0]; // for column one
+            td1 = tr[i].getElementsByTagName("td")[1]; // for column two
+            td2 = tr[i].getElementsByTagName("td")[2]; // for column two
+            td3 = tr[i].getElementsByTagName("td")[3]; // for column two
+            /* ADD columns here that you want you to filter to be used on */
             if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                if ( (td.innerHTML.toUpperCase().indexOf(filter) > -1) || (td1.innerHTML.toUpperCase().indexOf(filter) > -1)  || (td2.innerHTML.toUpperCase().indexOf(filter) > -1) || (td3.innerHTML.toUpperCase().indexOf(filter) > -1))  {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
                 }
             }
         }
+
     }
 </script>
 
